@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -12,7 +12,7 @@ CORS(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-class Products(db.Model):
+class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     title = db.Column(db.String(200))
     image = db.Column(db.String(200))
@@ -24,9 +24,9 @@ class ProductUser(db.Model):
 
     UniqueConstraint('user_id', 'product_id', name='user_product_unique')
 
-@app.route('/')
+@app.route('/get/products')
 def index():
-    return 'My Hello'
+    return jsonify(Product.query.all())
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')

@@ -15,6 +15,3 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Copy the application code
 COPY . /app
-
-# Command to run the application
-CMD python main.py
