@@ -1,6 +1,6 @@
 import pika
 
-params = pika.URLParameters('amqps://kshckzax:7u7qKSnPerZ3f748qARH6DDfDRav8eCg@beaver.rmq.cloudamqp.com/kshckzax')
+params = pika.URLParameters('amqps://zcsoshuo:xfEIqsjSocv3c0nbUaoFqBx6jwZpQFq2@albatross.rmq.cloudamqp.com/zcsoshuo')
 
 connection = pika.BlockingConnection(params)
 
@@ -11,7 +11,6 @@ channel.queue_declare(queue='admin')
 def callback(ch, method, properties, body):
     print('receive in admin')
     print(body)
-    pass
 
 channel.basic_consume(queue='admin', on_message_callback=callback, auto_ack=True)
 
