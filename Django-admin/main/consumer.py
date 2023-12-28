@@ -1,8 +1,5 @@
 import pika, json
-from main import Product, db
-from flask import Flask
-
-app = Flask(__name__)
+from main import Product, db, app
 
 params = pika.URLParameters('amqps://zcsoshuo:xfEIqsjSocv3c0nbUaoFqBx6jwZpQFq2@albatross.rmq.cloudamqp.com/zcsoshuo')
 
@@ -19,7 +16,6 @@ def callback(ch, method, properties, body):
     with app.app_context():
         if properties.content_type == 'product_created':
             product = Product(id=data['id'], title=data['title'], image=data['image'])
-            print(product.id, product.title, product.image)
             db.session.add(product)
             db.session.commit()
             print('Product Created')        
