@@ -11,7 +11,7 @@ channel.queue_declare(queue='main')
 
 def callback(ch, method, properties, body):
     data = json.loads(body)
-    print('recived messsage to main docker container')
+    print('received messsage to main docker container')
     print(data)
     with app.app_context():
         if properties.content_type == 'product_created':
@@ -21,7 +21,7 @@ def callback(ch, method, properties, body):
             print('Product Created')        
 
         elif properties.content_type == 'product_updated':
-            product = Product.query.get(data['id'])
+            product = Product.session.get(data['id'])
             product.title = data['title']
             product.image = data['image']
             db.session.commit()
