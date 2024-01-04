@@ -5,29 +5,23 @@ import {Link} from "react-router-dom";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
-
     useEffect(() => {
         (
             async () => {
                 const response = await fetch('http://localhost:8000/api/products');
-
                 const data = await response.json();
-
                 setProducts(data);
             }
         )();
     }, []);
-
     const del = async (id: number) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
             await fetch(`http://localhost:8000/api/products/${id}`, {
                 method: 'DELETE'
             });
-
             setProducts(products.filter((p: Product) => p.id !== id));
         }
     }
-
     return (
         <Wrapper>
             <div className="pt-3 pb-2 mb-3 border-bottom">
@@ -68,7 +62,6 @@ const Products = () => {
                                 </tr>
                             )
                         })}
-
                     </tbody>
                 </table>
             </div>

@@ -1,6 +1,6 @@
 import React, {PropsWithRef, SyntheticEvent, useEffect, useState} from 'react';
 import Wrapper from "./Wrapper";
-import {Redirect} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import {Product} from "../interfaces/product";
 
 const ProductsEdit = (props: PropsWithRef<any>) => {
@@ -37,7 +37,7 @@ const ProductsEdit = (props: PropsWithRef<any>) => {
     }
 
     if (redirect) {
-        return <Redirect to={'/admin/products'}/>
+        return <Navigate to={'/admin/products'}/>
     }
 
     return (

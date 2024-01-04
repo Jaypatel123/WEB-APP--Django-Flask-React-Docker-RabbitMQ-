@@ -1,6 +1,6 @@
 import React, {SyntheticEvent, useState} from 'react';
 import Wrapper from "./Wrapper";
-import {Redirect} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 
 const ProductsCreate = () => {
     const [title, setTitle] = useState('');
@@ -23,7 +23,7 @@ const ProductsCreate = () => {
     }
 
     if (redirect) {
-        return <Redirect to={'/admin/products'}/>
+        return <Navigate to={'/admin/products'}/>
     }
 
     return (
